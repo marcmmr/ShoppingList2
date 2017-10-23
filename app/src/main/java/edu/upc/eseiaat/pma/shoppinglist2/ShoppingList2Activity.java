@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class ShoppingList2Activity extends AppCompatActivity {
 
     private ArrayList<String> itemList;
-    private ArrayAdapter<String> adapter;
+    private ShoppingListAdapter adapter;
 
     private ListView list;
     private Button btn_add;
@@ -39,7 +39,7 @@ public class ShoppingList2Activity extends AppCompatActivity {
         itemList.add("Arròs");
         itemList.add("Macarrons");
 
-        adapter = new ArrayAdapter <> (
+        adapter = new ShoppingListAdapter(
                 this,
                 R.layout.shopping_item,
                 itemList
