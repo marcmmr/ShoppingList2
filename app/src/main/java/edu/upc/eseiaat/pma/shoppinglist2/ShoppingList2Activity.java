@@ -46,14 +46,14 @@ public class ShoppingList2Activity extends AppCompatActivity {
         );
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 addItem();
             }
         });
 
         edit_item.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 addItem();
                 return true;
             }
@@ -61,6 +61,15 @@ public class ShoppingList2Activity extends AppCompatActivity {
 
 
         list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
+                itemList.get(pos).toggleChecked();
+                adapter.notifyDataSetChanged();
+            }
+        });
+
 
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -76,10 +85,10 @@ public class ShoppingList2Activity extends AppCompatActivity {
         AlertDialog.Builder builder= new AlertDialog.Builder(this);
         builder.setTitle(R.string.confirm);
         String fmt = getResources().getString(R.string.confirm_message);
-        builder.setMessage(String.format(fmt, itemList.get(pos) ));
+        builder.setMessage(String.format(fmt, itemList.get(pos).getText() ));
         builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialogInterface, int i) {
                 itemList.remove(pos);
                 adapter.notifyDataSetChanged();
             }

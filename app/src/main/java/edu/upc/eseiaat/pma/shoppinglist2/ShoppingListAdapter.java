@@ -18,18 +18,17 @@ import java.util.zip.Inflater;
 /**
  * Created by marc.montserrat.robl on 23/10/2017.
  */
+public class ShoppingListAdapter extends ArrayAdapter<ShoppingItem> {
 
-public class ShoppingListAdapter extends ArrayAdapter <ShoppingItem> {
-
-    public ShoppingListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List objects) {
+    public ShoppingListAdapter(Context context, int resource, List objects) {
         super(context, resource, objects);
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         View result = convertView;
-        if (result == null){
+        if (result == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             result = inflater.inflate(R.layout.shopping_item, null);
         }
